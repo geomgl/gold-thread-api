@@ -13,70 +13,51 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const repository_1 = require("@loopback/repository");
-const users_repository_1 = require("../repositories/users.repository");
+const charities_repository_1 = require("../repositories/charities.repository");
 const rest_1 = require("@loopback/rest");
-const user_1 = require("../models/user");
-let UserController = class UserController {
-    constructor(userRepo) {
-        this.userRepo = userRepo;
+const charity_1 = require("../models/charity");
+let CharityController = class CharityController {
+    constructor(charitiesRepo) {
+        this.charitiesRepo = charitiesRepo;
     }
-    // register a new user endpoint
-    async createUser(user) {
-        return await this.userRepo.create(user);
+    // get list of all charities in database
+    async createUser(charity) {
+        return await this.charitiesRepo.create(charity_1.Charity);
     }
-    // get all users endpoint
+    // get list of all charities
     async getAll() {
-        return await this.userRepo.find();
+        return await this.charitiesRepo.find();
     }
-    // get a specific user by id 
-    async findUserById(id) {
-        return await this.userRepo.findById(id);
-    }
-    // login with username and password endpoint 
-    async login(user) {
-        var users = await this.userRepo.find();
-        for (var i = 0; i < users.length; i++)
-            var username = user[i].username;
-        var password = user[i].password;
-        {
-            if ((users[i].userName == username) && (users[i].password == password)) {
-                return users[i];
-            }
-        }
+    // find a specific charity by id
+    async findCharityById(id) {
+        return await this.charitiesRepo.findById(id);
     }
 };
 __decorate([
-    rest_1.post('/register'),
+    rest_1.post('/charities'),
     __param(0, rest_1.requestBody()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [user_1.User]),
+    __metadata("design:paramtypes", [charity_1.Charity]),
     __metadata("design:returntype", Promise)
-], UserController.prototype, "createUser", null);
+], CharityController.prototype, "createUser", null);
 __decorate([
-    rest_1.get('/users'),
+    rest_1.get('/charites'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
-], UserController.prototype, "getAll", null);
+], CharityController.prototype, "getAll", null);
 __decorate([
-    rest_1.get('/users/{id}'),
-    __param(0, rest_1.param.path.number('id')),
+    rest_1.get('/charities/{id}'),
+    __param(0, rest_1.param.path.number('charityId')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
-], UserController.prototype, "findUserById", null);
-__decorate([
-    rest_1.post('/login'),
-    __param(0, rest_1.requestBody()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [user_1.User]),
-    __metadata("design:returntype", Promise)
-], UserController.prototype, "login", null);
-UserController = __decorate([
-    __param(0, repository_1.repository(users_repository_1.UsersRepo.name)),
-    __metadata("design:paramtypes", [users_repository_1.UsersRepo])
-], UserController);
-exports.UserController = UserController;
+], CharityController.prototype, "findCharityById", null);
+CharityController = __decorate([
+    __param(0, repository_1.repository(charities_repository_1.CharitiesRepo.name)),
+    __metadata("design:paramtypes", [charities_repository_1.CharitiesRepo])
+], CharityController);
+exports.CharityController = CharityController;
 // async login(@requestBody() login: User) {
 //     var user = await this.userRepo.find();
 //     var username = login.username;
@@ -87,4 +68,4 @@ exports.UserController = UserController;
 //         }
 //     }
 // }
-//# sourceMappingURL=user.controller.js.map
+//# sourceMappingURL=charity.controller.js.map
