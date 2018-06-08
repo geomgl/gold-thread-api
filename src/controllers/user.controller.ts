@@ -26,6 +26,19 @@ export class UserController {
       return await this.userRepo.findById(id);
     }
 
+    // testing url stuff
+    @get('/users/{user_id}/donations')
+    async getDonationsByUserId(
+     @param.path.number( 'user_id') userId: number ,
+     @param.query.date('date_from') dateFrom: Date ,
+     ) {
+        console.log("awesome");
+        console.log(dateFrom);
+     }
+
+     // the stuff going into the parameters of param.path.whatever need to match what's in the 
+     
+
     // login with username and password endpoint 
     @post('/login')
     async login(@requestBody() user: User) {

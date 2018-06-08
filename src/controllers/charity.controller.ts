@@ -22,7 +22,7 @@ export class CharityController {
 
     // find a specific charity by id
     @get('/charities/{id}')
-    async findCharityById(@param.path.number('charityId') id: number): Promise<Charity> {
+    async findCharityById(@param.path.number('id') id: number): Promise<Charity> {
       return await this.charitiesRepo.findById(id);
     }
     

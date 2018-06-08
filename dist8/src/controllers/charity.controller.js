@@ -48,7 +48,7 @@ __decorate([
 ], CharityController.prototype, "getAll", null);
 __decorate([
     rest_1.get('/charities/{id}'),
-    __param(0, rest_1.param.path.number('charityId')),
+    __param(0, rest_1.param.path.number('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
